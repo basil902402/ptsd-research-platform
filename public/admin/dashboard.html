@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - منصة بحث PTSD</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body class="dashboard-page">
+    <!-- الشريط الجانبي -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>منصة PTSD</h2>
+            <p id="admin-username"></p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+                <span class="nav-icon">📊</span>
+                <span>الصفحة الرئيسية</span>
+            </a>
+            <a href="#" class="nav-item" data-page="data">
+                <span class="nav-icon">📋</span>
+                <span>إدارة البيانات</span>
+            </a>
+            <a href="#" class="nav-item" data-page="analytics">
+                <span class="nav-icon">📈</span>
+                <span>التحليلات</span>
+            </a>
+            <a href="#" class="nav-item" data-page="export">
+                <span class="nav-icon">📥</span>
+                <span>تصدير البيانات</span>
+            </a>
+            <a href="#" class="nav-item" data-page="qr">
+                <span class="nav-icon">📱</span>
+                <span>رمز QR</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logout-btn" class="btn btn-danger btn-block">
+                <span>🚪</span> تسجيل الخروج
+            </button>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+        <header class="top-nav">
+            <h1 id="page-title">لوحة التحكم</h1>
+            <div class="notifications">
+                <button class="notification-btn" id="notification-btn">
+                    <span>🔔</span>
+                    <span class="badge" id="notification-badge" style="display: none;">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- لوحة الإشعارات -->
+        <div class="notification-panel" id="notification-panel" style="display: none;">
+            <div class="notification-header">
+                <h3>الإشعارات</h3>
+                <button class="mark-all-read" id="mark-all-read">تحديد الكل كمقروء</button>
+            </div>
+            <div class="notification-list" id="notification-list">
+                <!-- سيتم ملؤها ديناميكياً -->
+            </div>
+        </div>
+
+        <div class="content-container">
+            <!-- صفحة الرئيسية -->
+            <div id="dashboard-page" class="page active">
+                <!-- بطاقات الإحصائيات -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <h3>المشاركون المكتملون</h3>
+                            <p class="stat-number" id="total-participants">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-info">
+                            <h3>المشاركون غير المكتملون</h3>
+                            <p class="stat-number" id="incomplete-participants">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-info">
+                            <h3>إجمالي الاستجابات</h3>
+                            <p class="stat-number" id="total-responses">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <h3>نسبة الإكمال</h3>
+                            <p class="stat-number" id="completion-rate">0%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- آخر استجابة -->
+                <div class="card">
+                    <h3 class="card-title">آخر استجابة</h3>
+                    <div id="latest-response">
+                        <p class="no-data">لا توجد استجابات بعد</p>
+                    </div>
+                </div>
+
+                <!-- رسم بياني سريع -->
+                <div class="card">
+                    <h3 class="card-title">توزيع الدرجات الكلية</h3>
+                    <canvas id="quick-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- صفحة البيانات -->
+            <div id="data-page" class="page">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">جميع المشاركين</h3>
+                        <div class="filters">
+                            <select id="marital-filter" class="form-select">
+                                <option value="">جميع الحالات الاجتماعية</option>
+                                <option value="متزوج">متزوج</option>
+                                <option value="غير متزوج">غير متزوج</option>
+                            </select>
+
+                            <select id="education-filter" class="form-select">
+                                <option value="">جميع المستويات التعليمية</option>
+                                <option value="غير متعلم">غير متعلم</option>
+                                <option value="ابتدائي">ابتدائي</option>
+                                <option value="متوسط">متوسط</option>
+                                <option value="ثانوي">ثانوي</option>
+                                <option value="دبلوم">دبلوم</option>
+                                <option value="جامعي">جامعي</option>
+                                <option value="دراسات عليا">دراسات عليا</option>
+                            </select>
+
+                            <select id="duration-filter" class="form-select">
+                                <option value="">جميع مدد الإصابة</option>
+                                <option value="أقل من 6 أشهر">أقل من 6 أشهر</option>
+                                <option value="من 6 أشهر إلى سنة">من 6 أشهر إلى سنة</option>
+                                <option value="من سنة إلى 3 سنوات">من سنة إلى 3 سنوات</option>
+                                <option value="3 سنوات فأكثر">3 سنوات فأكثر</option>
+                            </select>
+
+                            <select id="gender-filter" class="form-select">
+                                <option value="">كلا الجنسين</option>
+                                <option value="ذكر">ذكر</option>
+                                <option value="أنثى">أنثى</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="participants-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>المعرف</th>
+                                    <th>الجنس</th>
+                                    <th>العمر</th>
+                                    <th>المستوى التعليمي</th>
+                                    <th>الحالة الاجتماعية</th>
+                                    <th>مدة الإصابة</th>
+                                    <th>الدرجة الكلية</th>
+                                    <th>البعد الأول</th>
+                                    <th>البعد الثاني</th>
+                                    <th>البعد الثالث</th>
+                                    <th>التاريخ</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="participants-tbody">
+                                <!-- سيتم ملؤها ديناميكياً -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة التحليلات -->
+            <div id="analytics-page" class="page">
+                <div class="charts-grid">
+                    <div class="card">
+                        <h3 class="card-title">التوزيع حسب المستوى التعليمي</h3>
+                        <canvas id="education-chart"></canvas>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">التوزيع حسب مدة الإصابة</h3>
+                        <canvas id="duration-chart"></canvas>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">التوزيع حسب الجنس</h3>
+                        <canvas id="gender-chart"></canvas>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">التوزيع حسب الحالة الاجتماعية</h3>
+                        <canvas id="marital-chart"></canvas>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">توزيع الدرجات الكلية</h3>
+                        <canvas id="score-distribution-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة التصدير -->
+            <div id="export-page" class="page">
+                <div class="card export-card">
+                    <h3 class="card-title">تصدير البيانات</h3>
+
+                    <div class="export-options">
+                        <div class="export-option">
+                            <div class="export-icon">📊</div>
+                            <h4>تصدير Excel</h4>
+                            <p>تصدير جميع البيانات بصيغة Excel لتحليلها في برنامج Excel أو Google Sheets</p>
+                            <button class="btn btn-primary" onclick="exportData('excel')">
+                                تصدير Excel
+                            </button>
+                        </div>
+
+                        <div class="export-option">
+                            <div class="export-icon">📄</div>
+                            <h4>تصدير CSV</h4>
+                            <p>تصدير البيانات بصيغة CSV للاستخدام في أي برنامج إحصائي</p>
+                            <button class="btn btn-primary" onclick="exportData('csv')">
+                                تصدير CSV
+                            </button>
+                        </div>
+
+                        <div class="export-option">
+                            <div class="export-icon">💾</div>
+                            <h4>تصدير JSON</h4>
+                            <p>تصدير البيانات الكاملة بصيغة JSON للمعالجة البرمجية</p>
+                            <button class="btn btn-primary" onclick="exportData('json')">
+                                تصدير JSON
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="export-info">
+                        <h4>ملاحظات هامة:</h4>
+                        <ul>
+                            <li>سيتم تصدير جميع بيانات المشاركين المكتملين فقط</li>
+                            <li>الملفات المصدرة لا تحتوي على أي بيانات شخصية</li>
+                            <li>يتم ترميز المتغيرات للاستخدام المباشر في SPSS</li>
+                            <li>احتفظ بالملفات في مكان آمن</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة QR -->
+            <div id="qr-page" class="page">
+                <div class="card qr-card">
+                    <h3 class="card-title">رمز QR للمشاركين</h3>
+
+                    <div class="qr-content">
+                        <p>يمكنك مشاركة هذا الرمز مع المشاركين للوصول السريع إلى الاستبيان</p>
+
+                        <div class="qr-code" id="qr-code"></div>
+
+                        <div class="qr-url">
+                            <input type="text" id="participant-url" class="form-input" readonly>
+                            <button class="btn btn-secondary" onclick="copyUrl()">نسخ الرابط</button>
+                        </div>
+
+                        <div class="qr-actions">
+                            <button class="btn btn-primary" onclick="downloadQR()">
+                                تحميل رمز QR
+                            </button>
+                            <button class="btn btn-secondary" onclick="printQR()">
+                                طباعة رمز QR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تفاصيل المشارك -->
+    <div id="participant-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>تفاصيل المشارك</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="participant-details">
+                <!-- سيتم ملؤها ديناميكياً -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=6.0"></script>
+</body>
+
+</html>

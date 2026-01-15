@@ -1,0 +1,11 @@
+node_modules/
+.env
+database.db
+*.log
+.DS_Store
+*.bak
+*.tmp
+*.old
+ptsd-data.json
+ptsd.pdf
+ptsd_text.txt

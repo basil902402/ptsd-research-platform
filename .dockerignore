@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Database (سيتم إنشاؤها داخل الحاوية)
+database.db
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.tmp
+*.old
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Test files
+*.test.js
+test/
+
+# Documentation (اختياري - يمكن إزالة هذا السطر إذا أردت تضمين الوثائق)
+# README.md
+# DEPLOYMENT.md
+
+# Other files
+ptsd-data.json
+ptsd.pdf
+ptsd_text.txt

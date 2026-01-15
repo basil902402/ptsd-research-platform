@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - لوحة التحكم</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>🔐</h1>
+                <h2>لوحة تحكم الباحث</h2>
+                <p>منصة بحث اضطراب كرب ما بعد الصدمة</p>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" name="username" class="form-input" required autocomplete="username"
+                        autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" class="form-input" required
+                        autocomplete="current-password">
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;"></div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="login-btn">
+                    تسجيل الدخول
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>جامعة الملك عبدالعزيز</p>
+                <p>الباحث: باسل البشري</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>جاري تسجيل الدخول...</p>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            const loadingOverlay = document.getElementById('loading');
+            const loginBtn = document.getElementById('login-btn');
+
+            // إخفاء رسالة الخطأ
+            errorMessage.style.display = 'none';
+
+            // إظهار مؤشر التحميل
+            loadingOverlay.style.display = 'flex';
+            loginBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                loadingOverlay.style.display = 'none';
+                loginBtn.disabled = false;
+
+                if (response.ok && result.success) {
+                    // تسجيل دخول ناجح - التوجيه إلى لوحة التحكم
+                    window.location.href = '/admin/dashboard.html';
+                } else {
+                    // عرض رسالة الخطأ
+                    errorMessage.textContent = result.error || 'فشل تسجيل الدخول';
+                    errorMessage.style.display = 'block';
+                }
+
+            } catch (error) {
+                loadingOverlay.style.display = 'none';
+                loginBtn.disabled = false;
+                errorMessage.textContent = 'حدث خطأ في الاتصال بالخادم';
+                errorMessage.style.display = 'block';
+                console.error('خطأ في تسجيل الدخول:', error);
+            }
+        });
+
+        // التحقق من تسجيل الدخول عند تحميل الصفحة
+        async function checkSession() {
+            try {
+                const response = await fetch('/api/admin/check-session');
+                const result = await response.json();
+
+                if (result.authenticated) {
+                    // المستخدم مسجل دخوله بالفعل - توجيه إلى لوحة التحكم
+                    window.location.href = '/admin/dashboard.html';
+                }
+            } catch (error) {
+                console.error('خطأ في التحقق من الجلسة:', error);
+            }
+        }
+
+        checkSession();
+    </script>
+</body>
+
+</html>

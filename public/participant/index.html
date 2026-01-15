@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استبيان بحث اضطراب كرب ما بعد الصدمة</title>
+    <link rel="stylesheet" href="/participant/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- رأس الصفحة -->
+        <header class="header">
+            <div class="logo">
+                <h1>جامعة الملك عبدالعزيز</h1>
+                <p>استبيان بحث علمي</p>
+            </div>
+        </header>
+
+        <!-- صفحة الموافقة المستنيرة -->
+        <section id="consent-section" class="section active">
+            <div class="card">
+                <h2 class="section-title">الموافقة المستنيرة</h2>
+
+                <div class="consent-content">
+                    <h3>عزيزي المشارك / عزيزتي المشاركة،</h3>
+
+                    <p>السلام عليكم ورحمة الله وبركاته،</p>
+
+                    <p>أنا الباحث <strong>باسل البشري</strong>، طالب ماجستير في جامعة الملك عبدالعزيز، أقوم بإجراء بحث
+                        علمي بعنوان:</p>
+
+                    <div class="research-title">
+                        "اضطراب كرب ما بعد الصدمة لدى المرضى المصابين بمرض التصلب اللويحي لدى عينة من المرضى في مكة
+                        المكرمة في ضوء بعض المتغيرات"
+                    </div>
+
+                    <h4>الهدف من البحث:</h4>
+                    <p>يهدف هذا البحث إلى دراسة اضطراب كرب ما بعد الصدمة (PTSD) لدى المرضى المصابين بمرض التصلب اللويحي
+                        وعلاقته ببعض المتغيرات الديموغرافية.</p>
+
+                    <h4>سرية المعلومات:</h4>
+                    <ul>
+                        <li>جميع المعلومات التي ستدلي بها ستبقى سرية تماماً</li>
+                        <li>لن يتم جمع أي بيانات شخصية تعرّف عن هويتك</li>
+                        <li>ستستخدم البيانات لأغراض البحث العلمي فقط</li>
+                        <li>سيتم حفظ البيانات بشكل آمن ومشفر</li>
+                    </ul>
+
+                    <h4>المشاركة التطوعية:</h4>
+                    <ul>
+                        <li>مشاركتك في هذا البحث تطوعية بالكامل</li>
+                        <li>لك الحق في الانسحاب في أي وقت دون إبداء الأسباب</li>
+                        <li>لن يؤثر قرارك بالمشاركة أو عدم المشاركة على رعايتك الطبية</li>
+                    </ul>
+
+                    <h4>الوقت المطلوب:</h4>
+                    <p>سيستغرق إكمال هذا الاستبيان حوالي 10-15 دقيقة من وقتك.</p>
+
+                    <div class="consent-box">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="consent-checkbox">
+                            <span>أوافق على المشاركة في هذا البحث وأؤكد أنني قرأت وفهمت المعلومات أعلاه</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" id="consent-btn" disabled>
+                        المتابعة إلى الاستبيان
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- صفحة البيانات الديموغرافية -->
+        <section id="demographic-section" class="section">
+            <div class="card">
+                <h2 class="section-title">البيانات الأساسية</h2>
+
+                <form id="demographic-form">
+                    <div class="form-group">
+                        <label class="required">الجنس</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="ذكر" required>
+                                <span>ذكر</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="أنثى" required>
+                                <span>أنثى</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">الحالة الاجتماعية</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="maritalStatus" value="متزوج" required>
+                                <span>متزوج</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="maritalStatus" value="غير متزوج" required>
+                                <span>غير متزوج</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">العمر</label>
+                        <select name="age" required class="form-select">
+                            <option value="">اختر الفئة العمرية</option>
+                            <option value="18 فأقل">18 فأقل</option>
+                            <option value="19–29">19–29</option>
+                            <option value="30–39">30–39</option>
+                            <option value="40–49">40–49</option>
+                            <option value="50 فأكثر">50 فأكثر</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">المستوى التعليمي</label>
+                        <select name="educationLevel" required class="form-select">
+                            <option value="">اختر المستوى التعليمي</option>
+                            <option value="غير متعلم">غير متعلم</option>
+                            <option value="ابتدائي">ابتدائي</option>
+                            <option value="متوسط">متوسط</option>
+                            <option value="ثانوي">ثانوي</option>
+                            <option value="دبلوم">دبلوم</option>
+                            <option value="جامعي">جامعي</option>
+                            <option value="دراسات عليا">دراسات عليا</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">مدة الإصابة بمرض التصلب اللويحي</label>
+                        <select name="msDuration" required class="form-select">
+                            <option value="">اختر المدة</option>
+                            <option value="أقل من 6 أشهر">أقل من 6 أشهر</option>
+                            <option value="من 6 أشهر إلى سنة">من 6 أشهر إلى سنة</option>
+                            <option value="من سنة إلى 3 سنوات">من سنة إلى 3 سنوات</option>
+                            <option value="3 سنوات فأكثر">3 سنوات فأكثر</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="showSection('consent-section')">
+                            رجوع
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            المتابعة إلى المقياس
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- صفحة مقياس PTSD -->
+        <section id="ptsd-section" class="section">
+            <div class="card">
+                <h2 class="section-title">مقياس اضطراب كرب ما بعد الصدمة</h2>
+
+                <div class="instructions">
+                    <p>فيما يلي مجموعة من الأسئلة حول تجاربك خلال الأسبوع الماضي. لكل سؤال، اختر الإجابة التي تصف حالتك
+                        بشكل أفضل.</p>
+                </div>
+
+                <div class="ms-clarification">
+                    <p><strong>ملاحظة هامة:</strong></p>
+                    <p>المقصود بـ <strong>"الحدث الصادم"</strong> و <strong>"الخبرة الصادمة"</strong> في جميع الأسئلة
+                        هو: <strong>إصابتك بمرض التصلب اللويحي
+                            (Multiple Sclerosis)</strong></p>
+                </div>
+
+                <form id="ptsd-form">
+                    <div class="scale-legend-section">
+                        <h3>مقياس الإجابة:</h3>
+                        <div class="scale-legend">
+                            <div class="scale-item"><span class="scale-num">0</span> إطلاقاً</div>
+                            <div class="scale-item"><span class="scale-num">1</span> نادراً</div>
+                            <div class="scale-item"><span class="scale-num">2</span> أحياناً</div>
+                            <div class="scale-item"><span class="scale-num">3</span> غالباً</div>
+                            <div class="scale-item"><span class="scale-num">4</span> دائماً</div>
+                        </div>
+                    </div>
+
+                    <!-- البعد الأول: الاستعادة -->
+                    <div class="dimension-group">
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">1.</span>
+                                هل تتخيل صور، وذكريات، وأفكار عن الخبرة الصادمة؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q1" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q1"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q1"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q1"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q1"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">2.</span>
+                                هل تحلم أحلام مزعجة تتعلق بالخبرة الصادمة؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q2" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q2"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q2"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q2"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q2"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">3.</span>
+                                هل تشعر بمشاعر فجائية أو خبرات بأن ما حدث لك سيحدث مرة أخرى؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q3" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q3"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q3"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q3"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q3"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">4.</span>
+                                هل تتضايق من الأشياء التي تذكرك بما تعرضت له من خبرة صادمة؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q4" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q4"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q4"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q4"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q4"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- البعد الثاني: التجنب -->
+                    <div class="dimension-group">
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">5.</span>
+                                هل تتجنب الأفكار أو المشاعر التي تذكرك بالحدث الصادم؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q5" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q5"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q5"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q5"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q5"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">6.</span>
+                                هل تتجنب المواقف والأشياء التي تذكرك بالحدث الصادم؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q6" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q6"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q6"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q6"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q6"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">7.</span>
+                                هل تعاني من فقدان الذاكرة للأحداث الصادمة التي تعرضت لها (فقدان ذاكرة نفسي محدد)؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q7" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q7"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q7"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q7"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q7"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">8.</span>
+                                هل لديك صعوبة في التمتع بحياتك والنشاطات اليومية التي تعودت عليها؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q8" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q8"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q8"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q8"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q8"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">9.</span>
+                                هل تشعر بالعزلة وبأنك بعيد ولا تشعر بالحب تجاه الآخرين أو الانبساط؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q9" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q9"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q9"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q9"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q9"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">10.</span>
+                                هل فقدت الشعور بالحزن والحب (أنك متبلد الإحساس)؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q10" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q10"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q10"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q10"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q10"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">11.</span>
+                                هل تجد صعوبة في تخيل بقائك على قيد الحياة لفترة طويلة لتحقق أهدافك في العمل، والزواج،
+                                وإنجاب الأطفال؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q11" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q11"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q11"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q11"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q11"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- البعد الثالث: فرط الاستثارة -->
+                    <div class="dimension-group">
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">12.</span>
+                                هل لديك صعوبة في النوم أو البقاء نائماً؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q12" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q12"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q12"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q12"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q12"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">13.</span>
+                                هل تنتابك نوبات من التوتر والغضب؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q13" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q13"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q13"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q13"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q13"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">14.</span>
+                                هل تعاني من صعوبات في التركيز؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q14" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q14"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q14"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q14"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q14"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">15.</span>
+                                هل تشعر بأنك على حافة الانهيار (واصلة معاك على الآخر)، ومن السهل تشتيت انتباهك؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q15" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q15"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q15"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q15"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q15"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">16.</span>
+                                هل تستثار لأتفه الأسباب وتشعر دائماً بأنك متحفز ومتوقع الأسوأ؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q16" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q16"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q16"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q16"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q16"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <label class="question-label required">
+                                <span class="question-number">17.</span>
+                                هل الأشياء والأشخاص الذين يذكرونك بالخبرة الصادمة يجعلك تعاني من نوبة من ضيق التنفس،
+                                والرعشة، والعرق الغزير وسرعة في ضربات قلبك؟
+                            </label>
+                            <div class="scale-options">
+                                <label data-label="إطلاقاً"><input type="radio" name="q17" value="0"
+                                        required><span>0</span></label>
+                                <label data-label="نادراً"><input type="radio" name="q17"
+                                        value="1"><span>1</span></label>
+                                <label data-label="أحياناً"><input type="radio" name="q17"
+                                        value="2"><span>2</span></label>
+                                <label data-label="غالباً"><input type="radio" name="q17"
+                                        value="3"><span>3</span></label>
+                                <label data-label="دائماً"><input type="radio" name="q17"
+                                        value="4"><span>4</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="showSection('demographic-section')">
+                            رجوع
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            إرسال الاستبيان
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- صفحة الشكر -->
+        <section id="thankyou-section" class="section">
+            <div class="card thankyou-card">
+                <div class="success-icon">✓</div>
+                <h2 class="section-title">شكراً لمشاركتك!</h2>
+
+                <div class="thankyou-content">
+                    <p>تم إرسال إجاباتك بنجاح.</p>
+                    <p>نقدر وقتك ومساهمتك في هذا البحث العلمي.</p>
+
+                    <div class="reminder-box">
+                        <p><strong>تذكير:</strong></p>
+                        <p>جميع المعلومات التي قدمتها محفوظة بشكل آمن وسري، وستستخدم لأغراض البحث العلمي فقط.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- مؤشر التحميل -->
+        <div id="loading" class="loading-overlay" style="display: none;">
+            <div class="spinner"></div>
+            <p>جاري الإرسال...</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 جامعة الملك عبدالعزيز - جميع الحقوق محفوظة</p>
+        <p>الباحث: باسل البشري</p>
+    </footer>
+
+    <script src="/participant/script.js"></script>
+</body>
+
+</html>

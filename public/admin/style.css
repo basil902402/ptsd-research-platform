@@ -1190,12 +1190,531 @@ body {
     margin: 0;
 }
 
-/* استجابة للأجهزة المحمولة */
-@media (max-width: 768px) {
+/* ============= استجابة للأجهزة المحمولة ============= */
+
+/* زر القائمة للجوال */
+.mobile-menu-btn {
+    display: none;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* Overlay للقائمة الجانبية على الجوال */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* ============= Tablet (768px - 1024px) ============= */
+@media (max-width: 1024px) {
     .sidebar {
+        width: 250px;
+    }
+
+    .main-content {
+        margin-right: 250px;
+    }
+
+    .content-container {
+        padding: 30px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-panel {
+        width: 350px;
+    }
+}
+
+/* ============= Mobile (max-width: 768px) ============= */
+@media (max-width: 768px) {
+
+    /* القائمة الجانبية */
+    .sidebar {
+        width: 280px;
+        position: fixed;
+        right: -280px;
+        height: 100vh;
+        z-index: 1000;
+        transition: right 0.3s ease;
+    }
+
+    .sidebar.active {
+        right: 0;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-content {
+        margin-right: 0;
         width: 100%;
+    }
+
+    /* الشريط العلوي */
+    .top-nav {
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .top-nav h1 {
+        font-size: 20px;
+        flex: 1;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* المحتوى */
+    .content-container {
+        padding: 20px 15px;
+    }
+
+    /* بطاقات الإحصائيات */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 35px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    /* البطاقات */
+    .card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    /* الفلاتر */
+    .filters {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filters select,
+    .filters .btn {
+        width: 100%;
+    }
+
+    /* الجداول */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .data-table {
+        font-size: 13px;
+        min-width: 600px;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 10px 8px;
+    }
+
+    .table-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .table-actions .btn-sm {
+        width: 100%;
+    }
+
+    /* الرسوم البيانية */
+    .charts-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card canvas {
+        max-height: 300px !important;
+    }
+
+    /* خيارات التصدير */
+    .export-options {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .export-option {
+        padding: 25px;
+    }
+
+    .export-icon {
+        font-size: 50px;
+    }
+
+    /* QR Code */
+    .qr-url {
+        flex-direction: column;
+    }
+
+    .qr-url input {
+        width: 100%;
+    }
+
+    .qr-actions {
+        flex-direction: column;
+    }
+
+    .qr-actions .btn {
+        width: 100%;
+    }
+
+    /* الإشعارات */
+    .notification-panel {
+        width: calc(100vw - 40px);
+        max-width: none;
+        left: 20px;
+        right: 20px;
+    }
+
+    /* النافذة المنبثقة */
+    .modal {
+        padding: 10px;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    .modal-header h3 {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* بطاقات الدرجات */
+    .score-summary {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .score-card {
+        padding: 15px;
+    }
+
+    .score-number {
+        font-size: 32px;
+    }
+
+    /* صندوق التفسير */
+    .interpretation-box {
+        padding: 20px;
+    }
+
+    .interpretation-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .interpretation-level {
+        font-size: 18px;
+    }
+
+    /* نافذة التأكيد */
+    .confirm-content {
+        max-width: 100%;
+    }
+
+    .confirm-actions {
+        flex-direction: column-reverse;
+        padding: 15px 20px;
+    }
+
+    .confirm-actions .btn {
+        width: 100%;
+    }
+
+    /* Toast */
+    .toast {
+        min-width: auto;
+        width: calc(100vw - 40px);
+        max-width: 350px;
+    }
+
+    /* الأزرار */
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    /* صفحة تسجيل الدخول */
+    .login-card {
+        padding: 30px 25px;
+    }
+
+    .login-header h1 {
+        font-size: 50px;
+    }
+
+    .login-header h2 {
+        font-size: 20px;
+    }
+}
+
+/* ============= Small Mobile (max-width: 480px) ============= */
+@media (max-width: 480px) {
+
+    /* الشريط العلوي */
+    .top-nav h1 {
+        font-size: 18px;
+    }
+
+    .notification-btn {
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    /* المحتوى */
+    .content-container {
+        padding: 15px 10px;
+    }
+
+    /* بطاقات الإحصائيات */
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .stat-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 40px;
+        margin: 0 auto;
+    }
+
+    .stat-number {
+        font-size: 32px;
+    }
+
+    /* البطاقات */
+    .card {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    /* الجداول */
+    .data-table {
+        font-size: 12px;
+        min-width: 500px;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 8px 6px;
+    }
+
+    /* بطاقات الدرجات */
+    .score-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .score-card {
+        padding: 20px;
+    }
+
+    .score-number {
+        font-size: 38px;
+    }
+
+    /* الرسوم البيانية */
+    .card canvas {
+        max-height: 250px !important;
+    }
+
+    /* النافذة المنبثقة */
+    .modal-header {
+        padding: 15px;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    /* صفحة تسجيل الدخول */
+    .login-page {
+        padding: 15px;
+    }
+
+    .login-card {
+        padding: 25px 20px;
+    }
+
+    .login-header h1 {
+        font-size: 45px;
+    }
+
+    .login-header h2 {
+        font-size: 18px;
+    }
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+    /* الأزرار */
+    .btn {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+
+    /* QR Code */
+    .qr-code {
+        padding: 15px;
+    }
+
+    .qr-code img {
+        max-width: 100%;
         height: auto;
-        position: relative;
+    }
+}
+
+/* ============= تحسينات اللمس للجوال ============= */
+@media (hover: none) and (pointer: coarse) {
+
+    /* زيادة حجم الأزرار للمس */
+    .btn {
+        min-height: 44px;
+        padding: 14px 24px;
+    }
+
+    .btn-sm {
+        min-height: 38px;
+        padding: 10px 16px;
+    }
+
+    /* زيادة حجم عناصر القائمة */
+    .nav-item {
+        padding: 18px 20px;
+        min-height: 50px;
+    }
+
+    /* زيادة حجم الحقول */
+    .form-input,
+    .form-select {
+        min-height: 44px;
+        padding: 14px 16px;
+        font-size: 16px;
+        /* منع zoom على iOS */
+    }
+
+    /* زيادة حجم الأزرار في الجداول */
+    .table-actions .btn-sm {
+        min-height: 40px;
+    }
+
+    /* تحسين الإشعارات */
+    .notification-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* تحسين زر الإغلاق */
+    .modal-close {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* ============= Landscape Mobile ============= */
+@media (max-width: 768px) and (orientation: landscape) {
+    .sidebar {
+        width: 250px;
+        right: -250px;
+    }
+
+    .sidebar.active {
+        right: 0;
+    }
+
+    .content-container {
+        padding: 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .score-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============= Print Styles ============= */
+@media print {
+
+    .sidebar,
+    .top-nav,
+    .btn,
+    .filters,
+    .table-actions,
+    .notification-panel {
+        display: none !important;
     }
 
     .main-content {
@@ -1203,46 +1722,16 @@ body {
     }
 
     .content-container {
-        padding: 20px;
+        padding: 0;
     }
 
-    .top-nav {
-        padding: 15px 20px;
+    .card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
     }
 
-    .top-nav h1 {
-        font-size: 20px;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .charts-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .export-options {
-        grid-template-columns: 1fr;
-    }
-
-    .filters {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .filters select {
-        width: 100%;
-    }
-
-    .notification-panel {
-        width: 100%;
-        max-width: none;
-        left: 0;
-        right: 0;
-    }
-
-    .table-container {
-        overflow-x: scroll;
+    .page {
+        display: block !important;
     }
 }

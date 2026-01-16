@@ -14,8 +14,11 @@
 </head>
 
 <body class="dashboard-page">
+    <!-- Overlay للقائمة الجانبية على الجوال -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <!-- الشريط الجانبي -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h2>منصة PTSD</h2>
             <p id="admin-username"></p>
@@ -54,6 +57,9 @@
     <!-- المحتوى الرئيسي -->
     <div class="main-content">
         <header class="top-nav">
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span>☰</span>
+            </button>
             <h1 id="page-title">لوحة التحكم</h1>
             <div class="notifications">
                 <button class="notification-btn" id="notification-btn">

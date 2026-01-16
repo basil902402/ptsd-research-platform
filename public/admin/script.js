@@ -1031,4 +1031,48 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // ============= وظائف القائمة الجانبية للجوال =============
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    // فتح/إغلاق القائمة الجانبية
+    function toggleSidebar() {
+        sidebar.classList.toggle('active');
+        sidebarOverlay.classList.toggle('active');
+    }
+
+    // إغلاق القائمة الجانبية
+    function closeSidebar() {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+    }
+
+    // زر القائمة للجوال
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleSidebar);
+    }
+
+    // إغلاق القائمة عند النقر على الـ overlay
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', closeSidebar);
+    }
+
+    // إغلاق القائمة عند النقر على أي عنصر في القائمة (للجوال)
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function () {
+            // إغلاق القائمة فقط على الشاشات الصغيرة
+            if (window.innerWidth <= 768) {
+                closeSidebar();
+            }
+        });
+    });
+
+    // إغلاق القائمة عند تغيير حجم الشاشة لأكبر من 768px
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+            closeSidebar();
+        }
+    });
 });
